@@ -1,0 +1,530 @@
+<!-- Copyright 2013-2016 Perry The Cynic. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<Devices>
+	<Device type="custom" id="location">
+		<Name>Location</Name>
+		<States>
+			<State id="state" defaultValue="preparing">
+				<ValueType>
+					<List>
+						<Option value="preparing">Preparing</Option>
+						<Option value="ready">Ready</Option>
+						<Option value="unavailable">Unavailable</Option>
+					</List>
+				</ValueType>
+				<TriggerLabel>Location State</TriggerLabel>
+				<ControlPageLabel>State</ControlPageLabel>
+			</State>
+			<State id="conditions" defaultValue="">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Conditions Summary</TriggerLabel>
+				<ControlPageLabel>Conditions</ControlPageLabel>
+			</State>
+			<State id="temp" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Temperature</TriggerLabel>
+				<ControlPageLabel>Temperature</ControlPageLabel>
+			</State>
+			<State id="feelslike" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Feels Like</TriggerLabel>
+				<ControlPageLabel>Feels Like</ControlPageLabel>
+			</State>
+			<State id="dew" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Dewpoint</TriggerLabel>
+				<ControlPageLabel>Dewpoint</ControlPageLabel>
+			</State>
+			<State id="humidity" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Relative Humidity</TriggerLabel>
+				<ControlPageLabel>Humidity</ControlPageLabel>
+			</State>
+			<State id="cloudcover" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Cloud Cover</TriggerLabel>
+				<ControlPageLabel>Cloud Cover</ControlPageLabel>
+			</State>
+			<State id="pressure" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Atmospheric Pressure</TriggerLabel>
+				<ControlPageLabel>Pressure</ControlPageLabel>
+			</State>
+			<State id="visibility" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Visibility</TriggerLabel>
+				<ControlPageLabel>Visibility</ControlPageLabel>
+			</State>
+			<State id="windspeed" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Wind Speed</TriggerLabel>
+				<ControlPageLabel>Speed</ControlPageLabel>
+			</State>
+			<State id="windgust" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Wind Gust Speed</TriggerLabel>
+				<ControlPageLabel>Wind Gusts</ControlPageLabel>
+			</State>
+			<State id="winddir" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Wind Direction</TriggerLabel>
+				<ControlPageLabel>Wind Direction</ControlPageLabel>
+			</State>
+			<State id="precip" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Precipitation Amount</TriggerLabel>
+				<ControlPageLabel>Precipitation</ControlPageLabel>
+			</State>
+			<State id="precipprob" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Precipitation Probability</TriggerLabel>
+				<ControlPageLabel>Precipitation Probability</ControlPageLabel>
+			</State>
+			<State id="icon" defaultValue="">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Icon</TriggerLabel>
+				<ControlPageLabel>Icon</ControlPageLabel>
+			</State>
+			<State id="moonphase" defaultValue="">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Moon Phase</TriggerLabel>
+				<ControlPageLabel>Moon Phase</ControlPageLabel>
+			</State>
+			<State id="uvindex" defaultValue="">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>UV Radiation Index</TriggerLabel>
+				<ControlPageLabel>UV Index</ControlPageLabel>
+			</State>
+			<State id="solarradiation" defaultValue="">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Solar Radiation Energy</TriggerLabel>
+				<ControlPageLabel>Solar Radiation</ControlPageLabel>
+			</State>
+			<State id="solarenergy" defaultValue="">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Solar Energy</TriggerLabel>
+				<ControlPageLabel>Solar Energy</ControlPageLabel>
+			</State>
+			<State id="severerisk" defaultValue="">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Risk of Severe Weather</TriggerLabel>
+				<ControlPageLabel>Severe Weather Risk</ControlPageLabel>
+			</State>
+			<State id="alert" defaultValue="">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Alert</TriggerLabel>
+				<ControlPageLabel>Alert</ControlPageLabel>
+			</State>
+			<State id="alert_url" defaultValue="">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Alert URL</TriggerLabel>
+				<ControlPageLabel>Alert URL</ControlPageLabel>
+			</State>
+			<State id="data" defaultValue="">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Forecast Data</TriggerLabel>
+				<ControlPageLabel>Forecast Data</ControlPageLabel>
+			</State>
+		</States>
+		<UiDisplayStateId>temperature</UiDisplayStateId>
+		<ConfigUI>
+			<Field id="polling" type="textfield" defaultValue="15"
+				tooltip="Minutes between data updates.">
+				<Label>Refresh Interval:</Label>
+			</Field>
+			<Field id="units" type="menu" defaultValue="us">
+				<List>
+					<Option value="us">United States</Option>					
+					<Option value="metric">Standard (SI)</Option>					
+				</List>
+				<Label>Units:</Label>
+			</Field>
+			<Field type="separator"/>
+			<Field id="latitude" type="textfield">
+				<Label>Latitude:</Label>
+			</Field>
+			<Field id="longitude" type="textfield">
+				<Label>Longitude:</Label>
+			</Field>
+			<Field type="label" fontSize="small" alignWithControl="true">If you want weather for another location than where Indigo thinks you are, enter its coordinates here.</Field>
+			<Field type="separator"/>
+			<Field id="rawdata" type="checkbox"
+				tooltip="Populate the &quot;data&quot; state of the device with the raw Visual Crossing JSON data, allowing you to use it in your advanced programs and scripts.">
+				<Label>Report raw JSON Data:</Label>
+			</Field>
+		</ConfigUI>
+	</Device>
+	
+	<Device type="custom" id="hourforecast">
+		<Name>Hourly Forecast</Name>
+		<States>
+			<State id="state" defaultValue="preparing">
+				<ValueType>
+					<List>
+						<Option value="preparing">Preparing</Option>
+						<Option value="ready">Ready</Option>
+						<Option value="unavailable">Unavailable</Option>
+					</List>
+				</ValueType>
+				<TriggerLabel>Forecast State</TriggerLabel>
+				<ControlPageLabel>State</ControlPageLabel>
+			</State>
+			<State id="conditions" defaultValue="">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Conditions Summary</TriggerLabel>
+				<ControlPageLabel>Conditions</ControlPageLabel>
+			</State>
+			<State id="summary" defaultValue="">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Forecast Summary</TriggerLabel>
+				<ControlPageLabel>Summary</ControlPageLabel>
+			</State>
+			<State id="temp" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Temperature</TriggerLabel>
+				<ControlPageLabel>Temperature</ControlPageLabel>
+			</State>
+			<State id="tempmin" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Minimum Temperature</TriggerLabel>
+				<ControlPageLabel>Minimum Temperature</ControlPageLabel>
+			</State>
+			<State id="tempmax" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Maximum Temperature</TriggerLabel>
+				<ControlPageLabel>Maximum Temperature</ControlPageLabel>
+			</State>
+			<State id="feelslike" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Feels Like</TriggerLabel>
+				<ControlPageLabel>Feels Like</ControlPageLabel>
+			</State>
+			<State id="feelslikemin" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Minimum Feels Like</TriggerLabel>
+				<ControlPageLabel>Minimum Feels Like</ControlPageLabel>
+			</State>
+			<State id="feelslikemax" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Maximum Feels Like</TriggerLabel>
+				<ControlPageLabel>Maximum Feels Like</ControlPageLabel>
+			</State>
+			<State id="dew" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Dewpoint</TriggerLabel>
+				<ControlPageLabel>Dewpoint</ControlPageLabel>
+			</State>
+			<State id="humidity" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Relative Humidity</TriggerLabel>
+				<ControlPageLabel>Humidity</ControlPageLabel>
+			</State>
+			<State id="cloudcover" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Cloud Cover</TriggerLabel>
+				<ControlPageLabel>Cloud Cover</ControlPageLabel>
+			</State>
+			<State id="pressure" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Atmospheric Pressure</TriggerLabel>
+				<ControlPageLabel>Pressure</ControlPageLabel>
+			</State>
+			<State id="visibility" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Visibility</TriggerLabel>
+				<ControlPageLabel>Visibility</ControlPageLabel>
+			</State>
+			<State id="windspeed" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Wind Speed</TriggerLabel>
+				<ControlPageLabel>Speed</ControlPageLabel>
+			</State>
+			<State id="windgust" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Wind Gust Speed</TriggerLabel>
+				<ControlPageLabel>Wind Gusts</ControlPageLabel>
+			</State>
+			<State id="winddir" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Wind Direction</TriggerLabel>
+				<ControlPageLabel>Wind Direction</ControlPageLabel>
+			</State>
+			<State id="precip" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Precipitation Amount</TriggerLabel>
+				<ControlPageLabel>Precipitation</ControlPageLabel>
+			</State>
+			<State id="precipprob" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Precipitation Probability</TriggerLabel>
+				<ControlPageLabel>Precipitation Probability</ControlPageLabel>
+			</State>
+			<State id="icon" defaultValue="">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Icon</TriggerLabel>
+				<ControlPageLabel>Icon</ControlPageLabel>
+			</State>
+			<State id="moonphase" defaultValue="">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Moon Phase</TriggerLabel>
+				<ControlPageLabel>Moon Phase</ControlPageLabel>
+			</State>
+			<State id="uvindex" defaultValue="">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>UV Radiation Index</TriggerLabel>
+				<ControlPageLabel>UV Index</ControlPageLabel>
+			</State>
+			<State id="solarradiation" defaultValue="">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Solar Radiation</TriggerLabel>
+				<ControlPageLabel>Solar Radiation</ControlPageLabel>
+			</State>
+			<State id="solarenergy" defaultValue="">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Solar Energy</TriggerLabel>
+				<ControlPageLabel>Solar Energy</ControlPageLabel>
+			</State>
+			<State id="severerisk" defaultValue="">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Risk of Severe Weather</TriggerLabel>
+				<ControlPageLabel>Severe Weather Risk</ControlPageLabel>
+			</State>
+			<State id="alert" defaultValue="">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Alert</TriggerLabel>
+				<ControlPageLabel>Alert</ControlPageLabel>
+			</State>
+			<State id="alert_url" defaultValue="">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Alert URL</TriggerLabel>
+				<ControlPageLabel>Alert URL</ControlPageLabel>
+			</State>
+			<State id="data" defaultValue="">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Forecast Data</TriggerLabel>
+				<ControlPageLabel>Forecast Data</ControlPageLabel>
+			</State>
+		</States>
+		
+		<UiDisplayStateId>temperature</UiDisplayStateId>
+		
+		<ConfigUI>
+			<Field id="location" type="menu">
+                <List class="indigo.devices" filter="self.location"/>
+                <Label>Location:</Label>
+			</Field>
+			<Field type="separator"/>
+			<Field id="distance" type="textfield" defaultValue="1">
+                <Label>Hours:</Label>
+			</Field>
+		</ConfigUI>
+	</Device>
+	
+	<Device type="custom" id="dayforecast">
+		<Name>Daily Forecast</Name>
+		<States>
+			<State id="state" defaultValue="preparing">
+				<ValueType>
+					<List>
+						<Option value="preparing">Preparing</Option>
+						<Option value="ready">Ready</Option>
+						<Option value="unavailable">Unavailable</Option>
+					</List>
+				</ValueType>
+				<TriggerLabel>Forecast State</TriggerLabel>
+				<ControlPageLabel>State</ControlPageLabel>
+			</State>
+			<State id="conditions" defaultValue="">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Conditions Summary</TriggerLabel>
+				<ControlPageLabel>Conditions</ControlPageLabel>
+			</State>
+			<State id="summary" defaultValue="">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Forecast Summary</TriggerLabel>
+				<ControlPageLabel>Summary</ControlPageLabel>
+			</State>
+			<State id="temp" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Temperature</TriggerLabel>
+				<ControlPageLabel>Temperature</ControlPageLabel>
+			</State>
+			<State id="tempmin" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Minimum Temperature</TriggerLabel>
+				<ControlPageLabel>Minimum Temperature</ControlPageLabel>
+			</State>
+			<State id="tempmax" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Maximum Temperature</TriggerLabel>
+				<ControlPageLabel>Maximum Temperature</ControlPageLabel>
+			</State>
+			<State id="feelslike" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Feels Like</TriggerLabel>
+				<ControlPageLabel>Feels Like</ControlPageLabel>
+			</State>
+			<State id="feelslikemin" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Minimum Feels Like</TriggerLabel>
+				<ControlPageLabel>Minimum Feels Like</ControlPageLabel>
+			</State>
+			<State id="feelslikemax" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Maximum Feels Like</TriggerLabel>
+				<ControlPageLabel>Maximum Feels Like</ControlPageLabel>
+			</State>
+			<State id="dew" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Dewpoint</TriggerLabel>
+				<ControlPageLabel>Dewpoint</ControlPageLabel>
+			</State>
+			<State id="humidity" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Relative Humidity</TriggerLabel>
+				<ControlPageLabel>Humidity</ControlPageLabel>
+			</State>
+			<State id="cloudcover" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Cloud Cover</TriggerLabel>
+				<ControlPageLabel>Cloud Cover</ControlPageLabel>
+			</State>
+			<State id="pressure" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Atmospheric Pressure</TriggerLabel>
+				<ControlPageLabel>Pressure</ControlPageLabel>
+			</State>
+			<State id="visibility" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Visibility</TriggerLabel>
+				<ControlPageLabel>Visibility</ControlPageLabel>
+			</State>
+			<State id="windspeed" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Wind Speed</TriggerLabel>
+				<ControlPageLabel>Speed</ControlPageLabel>
+			</State>
+			<State id="windgust" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Wind Gust Speed</TriggerLabel>
+				<ControlPageLabel>Wind Gusts</ControlPageLabel>
+			</State>
+			<State id="winddir" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Wind Direction</TriggerLabel>
+				<ControlPageLabel>Wind Direction</ControlPageLabel>
+			</State>
+			<State id="precip" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Precipitation Amount</TriggerLabel>
+				<ControlPageLabel>Precipitation</ControlPageLabel>
+			</State>
+			<State id="precipprob" defaultValue="0">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Precipitation Probability</TriggerLabel>
+				<ControlPageLabel>Precipitation Probability</ControlPageLabel>
+			</State>
+			<State id="icon" defaultValue="">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Icon</TriggerLabel>
+				<ControlPageLabel>Icon</ControlPageLabel>
+			</State>
+			<State id="moonphase" defaultValue="">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Moon Phase</TriggerLabel>
+				<ControlPageLabel>Moon Phase</ControlPageLabel>
+			</State>
+			<State id="uvindex" defaultValue="">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>UV Radiation Index</TriggerLabel>
+				<ControlPageLabel>UV Index</ControlPageLabel>
+			</State>
+			<State id="solarradiation" defaultValue="">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Solar Radiation Energy</TriggerLabel>
+				<ControlPageLabel>Solar Radiation</ControlPageLabel>
+			</State>
+			<State id="solarenergy" defaultValue="">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Solar Energy</TriggerLabel>
+				<ControlPageLabel>Solar Energy</ControlPageLabel>
+			</State>
+			<State id="severerisk" defaultValue="">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Risk of Severe Weather</TriggerLabel>
+				<ControlPageLabel>Severe Weather Risk</ControlPageLabel>
+			</State>
+			<State id="alert" defaultValue="">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Alert</TriggerLabel>
+				<ControlPageLabel>Alert</ControlPageLabel>
+			</State>
+			<State id="alert_url" defaultValue="">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Alert URL</TriggerLabel>
+				<ControlPageLabel>Alert URL</ControlPageLabel>
+			</State>
+			<State id="data" defaultValue="">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Forecast Data</TriggerLabel>
+				<ControlPageLabel>Forecast Data</ControlPageLabel>
+			</State>
+		</States>
+		
+		<UiDisplayStateId>summary</UiDisplayStateId>
+		
+		<ConfigUI>
+			<Field id="location" type="menu">
+                <List class="indigo.devices" filter="self.location"/>
+                <Label>Location:</Label>
+			</Field>
+			<Field type="separator"/>
+			<Field id="distance" type="textfield" defaultValue="1">
+                <Label>Days:</Label>
+			</Field>
+		</ConfigUI>
+	</Device>
+
+	<Device type="custom" id="orientation">
+		<Name>Orientation</Name>
+		<States>
+			<State id="azimuth">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Horizontal</TriggerLabel>
+				<ControlPageLabel>Horizontal</ControlPageLabel>
+			</State>
+			<State id="height">
+				<ValueType>Float</ValueType>
+				<TriggerLabel>Height</TriggerLabel>
+				<ControlPageLabel>Height</ControlPageLabel>
+			</State>
+			<State id="index">
+				<ValueType>Integer</ValueType>
+				<TriggerLabel>Index</TriggerLabel>
+				<ControlPageLabel>Index</ControlPageLabel>
+			</State>
+		</States>
+		<UiDisplayStateId>azimuth</UiDisplayStateId>
+		<ConfigUI>
+			<Field id="facing" type="textfield">
+				<Label>Facing:</Label>
+			</Field>
+			<Field type="label" alignWithControl="true">Face straight outside the window or surface and measure true (not magnetic) bearing.</Field>
+			<Field id="elevation" type="textfield" defaultValue="0" hidden="yes">
+				<Label>Elevation:</Label>
+			</Field>
+		</ConfigUI>
+	</Device>
+</Devices>

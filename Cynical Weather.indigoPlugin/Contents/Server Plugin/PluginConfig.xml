@@ -1,0 +1,43 @@
+<!-- Copyright 2013-2016 Perry The Cynic. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<PluginConfig>
+	<SupportURL>http://www.cynic.org/indigo/plugins/online/weather.html#pluginconfig</SupportURL>
+	<Field type="label">Get hyperlocal weather, forecasts, and alerts; track the Sun; and such things.</Field>
+	<Field id="copyright" type="label" fontSize="small">
+<!-- Copyright 2013-2016 Perry The Cynic. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+	</Field>
+	<Field id="credit" type="label" fontSize="small">Weather reporting powered by Visual Crossing. Many thanks for a great service.</Field>
+    <Field type="separator"/>
+    <Field type="label">Get weather and forecasts from Visual Crossing.</Field>
+    <Field type="label" fontSize="small">To use the Visual Crossing weather service, you need an individual API Key. Get it from https://www.visualcrossing.com/sign-up/ and paste it into this field. Keep this key to yourself and tell your friends to get their own.</Field>
+    <Field id="apikey" type="textfield" defaultValue="" secure="true"
+	    tooltip="Your API key for Visual Crossing. Keep this to yourself.">
+		<Label>API Key:</Label>
+    </Field>
+    <Field type="label" fontSize="small" fontColor="darkgray" alignWithControl="true">If you don't use the weather reporting feature, you don't need an API key.</Field>
+</PluginConfig>
